@@ -20,13 +20,24 @@ def twitConnection_v1():
     return tweepy.API(auth)
 
 
-# Function to post a tweet using v2 of the Twitter API
+def post_tweet(client, msg):
+    try:
+        response = client.create_tweet(text=msg)
+    except Exception as e:
+        print(f"Failed to create tweet: {e}")
+        # Handle the error appropriately
 
 
-# Function to post a tweet with media using v1.1 of the Twitter API
+def post_tweet_with_media(client, client_v1, msg, my_media):
+    try:
+        media = client_v1.media_upload(filename=my_media)
+        media_id = media.media_id
+        response = client.create_tweet(text=msg, media_ids=[media_id])
+    except Exception as e:
+        print(f"Failed to post tweet with media: {e}")
+        # Handle the error appropriately
 
 
-# Main function to control the flow of the script
 def main():
     msg = "This is a test message"
     my_media = r"/Users/mattiabeccari/Documents/Memes/tech/learnC++.jpg"
@@ -34,24 +45,11 @@ def main():
     client = twitConnection()
 
     if msg:
-        media_id = None
-
         if my_media:
-            try:
-                client_v1 = twitConnection_v1()
-                media = client_v1.media_upload(filename=my_media)
-                media_id = media.media_id
-            except Exception as e:
-                print(f"Failed to upload media: {e}")
-                # Handle the error appropriately (e.g., log it, exit the function, etc.)
-        try:
-            if media_id:
-                response = client.create_tweet(text=msg, media_ids=[media_id])
-            else:
-                response = client.create_tweet(text=msg)
-        except Exception as e:
-            print(f"Failed to create tweet: {e}")
-            # Handle the error appropriately
+            client_v1 = twitConnection_v1()
+            post_tweet_with_media(client, client_v1, msg, my_media)
+        else:
+            post_tweet(client, msg)
     else:
         print("No message to tweet")
 
