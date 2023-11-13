@@ -54,6 +54,5 @@ def main():
         print("No message to tweet")
 
 
-# Run the main function if the script is executed
 if __name__ == "__main__":
     main()

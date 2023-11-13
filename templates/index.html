@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>No Feed Twitter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="tweet-container">
+        <textarea id="tweetText" placeholder="What's happening?"></textarea>
+        <div class="tweet-options">
+            <input type="file" id="mediaInput" hidden>
+            <button id="mediaButton">📎</button>
+            <button id="tweetButton">Post</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
