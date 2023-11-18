@@ -30,8 +30,7 @@ def post_tweet(client, msg):
 
 def post_tweet_with_media(client, client_v1, msg, my_media):
     try:
-        media = client_v1.media_upload(filename=my_media)
-        media_id = media.media_id
+        # Twitter API v2 client is used to create a tweet with media_id
         response = client.create_tweet(text=msg, media_ids=[media_id])
     except Exception as e:
         print(f"Failed to post tweet with media: {e}")
