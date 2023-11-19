@@ -3,19 +3,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const tweetButton = document.getElementById('tweetButton');
   const tweetText = document.getElementById('tweetText');
   const mediaInput = document.getElementById('mediaInput');
-  const mediaList = document.getElementById('file-name');
-
+  const mediaButton = document.getElementById('mediaButton')
+  
   mediaInput.addEventListener('change', () => {
-    for (let i = 0; i < mediaInput.files.length; i++) {
-      const file = mediaInput.files[i];
-      allMedia.push(file);
+    if (allMedia.length + mediaInput.files.length > 4) {
+      alert('Please upload up to 4 photos.');
+      mediaInput.value = '';
+    } else {
+      for (let i = 0; i < mediaInput.files.length; i++) {
+        const file = mediaInput.files[i];
+        allMedia.push(file);
+      }
+      updateMediaList();
+      mediaButton.disabled = allMedia.length >= 4;
     }
-    updateMediaList();
   });
 
   function updateMediaList() {
-    document.getElementById('image-preview-container').innerHTML = ''; // Clear existing previews
-  
+    const container = document.getElementById('image-preview-container');
+    container.innerHTML = '';
     allMedia.forEach((file, index) => {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -34,15 +40,15 @@ document.addEventListener('DOMContentLoaded', () => {
           URL.revokeObjectURL(img.src); 
           allMedia.splice(index, 1);
           updateMediaList();
+          mediaButton.disabled = allMedia.length >= 4;
         };
   
         preview.appendChild(deleteIcon);
-        document.getElementById('image-preview-container').appendChild(preview);
+        container.appendChild(preview);
       };
       reader.readAsDataURL(file);
     });
   }
-
   tweetButton.addEventListener('click', () => {
     const formData = new FormData();
     formData.append('text', tweetText.value);

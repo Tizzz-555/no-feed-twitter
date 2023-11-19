@@ -81,3 +81,7 @@ body {
 #tweetButton:hover {
   opacity: 0.8;
 }
+
+#mediaButton:disabled {
+  cursor: default;
+}
