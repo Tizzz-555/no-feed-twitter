@@ -14,29 +14,32 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function updateMediaList() {
-    let fileListHtml = "";
-    for (let i = 0; i < allMedia.length; i++) {
-      const imgSrc = URL.createObjectURL(allMedia[i]);
-      fileListHtml += `<div style='display: flex; align-items: center; margin-bottom: 8px;'>
-                        <img src='${imgSrc}' style='width: 50px; height: 50px; object-fit: cover; margin-right: 10px;' alt='Preview'>
-                        ${i + 1}. ${allMedia[i].name}
-                        <a href='#' class='delete-file' data-file-index='${i}' aria-label='Delete image'>
-                          <svg class='icon icon-primary icon-sm mb-1'>
-                            <use href='#it-close'></use>
-                          </svg>
-                        </a>
-                      </div>`;
-    }
-    mediaList.innerHTML = fileListHtml;
-
-    document.querySelectorAll('.delete-file').forEach(item => {
-      item.addEventListener('click', (e) => {
-        e.preventDefault();
-        const fileIndex = parseInt(item.getAttribute('data-file-index'));
-        URL.revokeObjectURL(allMedia[fileIndex]);
-        allMedia.splice(fileIndex, 1); // Remove file from array
-        updateMediaList(); // Update the file list
-      });
+    document.getElementById('image-preview-container').innerHTML = ''; // Clear existing previews
+  
+    allMedia.forEach((file, index) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.alt = 'Preview';
+  
+        const preview = document.createElement('div');
+        preview.className = 'image-preview';
+        preview.appendChild(img);
+  
+        const deleteIcon = document.createElement('div');
+        deleteIcon.className = 'delete-icon';
+        deleteIcon.innerHTML = '✖';
+        deleteIcon.onclick = function() {
+          URL.revokeObjectURL(img.src); 
+          allMedia.splice(index, 1);
+          updateMediaList();
+        };
+  
+        preview.appendChild(deleteIcon);
+        document.getElementById('image-preview-container').appendChild(preview);
+      };
+      reader.readAsDataURL(file);
     });
   }
 

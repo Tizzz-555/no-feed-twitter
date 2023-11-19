@@ -6,18 +6,20 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div class="tweet-container">
-        <textarea id="tweetText" placeholder="What's happening?"></textarea>
-        <div class="tweet-options">
-            <input type="file" id="mediaInput" multiple hidden>
-            <button id="mediaButton">📎</button>
-            <button id="tweetButton">Post</button>
-            <div class="upload-wrapper d-flex justify-content-between align-items-center">
-              <div id="image-preview-container"></div>
-              <span class="t-primary fw-bold w-100 ms-2" id="file-name"></span>
-            </div>
-        </div>
+  <div class="tweet-container">
+    <textarea id="tweetText" placeholder="What's happening?"></textarea>
+    <div id="image-preview-container" class="image-preview-container">
+        <!-- Image previews will be inserted here -->
     </div>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <div class="tweet-options">
+        <button id="mediaButton">📎</button>
+        <input type="file" id="mediaInput" multiple hidden>
+        <button id="tweetButton">Post</button>
+    </div>
+  </div>
+
+    <script
+    src="{{ url_for('static', filename='js/script.js') }}">
+  </script>
 </body>
 </html>
