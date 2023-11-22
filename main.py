@@ -28,29 +28,35 @@ def post_tweet(client, msg):
         # Handle the error appropriately
 
 
-def post_tweet_with_media(client, client_v1, msg, my_media):
+def post_tweet_with_media(client, client_v1, msg, media_file):
     try:
-        # Twitter API v2 client is used to create a tweet with media_id
-        response = client.create_tweet(text=msg, media_ids=[media_id])
+        # Use the 'name' attribute for the filename
+        media_response = client_v1.media_upload(
+            filename=media_file.name, file=media_file
+        )
+        media_id = media_response.media_id_string
+
+        tweet_response = client.create_tweet(text=msg, media_ids=[media_id])
+        return tweet_response
     except Exception as e:
         print(f"Failed to post tweet with media: {e}")
-        # Handle the error appropriately
+        raise e
 
 
-def main():
-    msg = "This is a test message"
-    my_media = r"/Users/mattiabeccari/Documents/Memes/tech/learnC++.jpg"
+# def main():
+#     msg = "This is a test message"
+#     my_media = r"/Users/mattiabeccari/Documents/Memes/tech/learnC++.jpg"
 
-    client = twitConnection()
+#     client = twitConnection()
 
-    if msg:
-        if my_media:
-            client_v1 = twitConnection_v1()
-            post_tweet_with_media(client, client_v1, msg, my_media)
-        else:
-            post_tweet(client, msg)
-    else:
-        print("No message to tweet")
+#     if msg:
+#         if my_media:
+#             client_v1 = twitConnection_v1()
+#             post_tweet_with_media(client, client_v1, msg, my_media)
+#         else:
+#             post_tweet(client, msg)
+#     else:
+#         print("No message to tweet")
 
 
 if __name__ == "__main__":

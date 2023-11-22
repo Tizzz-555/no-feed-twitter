@@ -52,27 +52,40 @@ document.addEventListener('DOMContentLoaded', () => {
   tweetButton.addEventListener('click', () => {
     const formData = new FormData();
     formData.append('text', tweetText.value);
-
+  
     if (mediaInput.files.length > 0) {
       formData.append('media', mediaInput.files[0]);
     }
-
+    
     fetch('/post_tweet', {
       method: 'POST',
       body: formData
     })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        // Attempt to read the JSON error message, if possible
+        return response.json().then(errorData => {
+          throw new Error(errorData.error || 'Network response was not ok');
+        }).catch(() => {
+          // If the response is not JSON, throw a general error
+          throw new Error('Network response was not ok and no error message is available');
+        });
+      }
+      return response.json();
+    })
     .then(data => {
       if (data.success) {
         alert('Tweet posted successfully!');
       } else {
+        console.error('Failed to post tweet:', data.error);
         alert('Failed to post tweet.');
       }
     })
     .catch(error => {
       console.error('Error:', error);
-      alert('An error occurred while posting the tweet.');
+      alert('An error occurred while posting the tweet.' + error.message);
     });
+    
   });
 
   document.getElementById('mediaButton').addEventListener('click', () => {
