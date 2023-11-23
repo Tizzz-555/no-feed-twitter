@@ -54,7 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
     formData.append('text', tweetText.value);
   
     if (mediaInput.files.length > 0) {
-      formData.append('media', mediaInput.files[0]);
+      allMedia.forEach((file) => {
+        formData.append('media', file);
+    });
     }
     
     fetch('/post_tweet', {

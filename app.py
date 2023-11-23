@@ -18,16 +18,20 @@ def index():
 def handle_tweet_post():
     try:
         msg = request.form.get("text")
-        media = request.files.get("media")
+        media_files = request.files.getlist("media")
+
         client = twitConnection()
         client_v1 = twitConnection_v1()
+        media_ids = []
 
-        if media:
+        for media in media_files:
             media_file = BytesIO(media.read())
             media_file.name = media.filename
+            response = client_v1.media_upload(filename=media.filename, file=media_file)
+            media_ids.append(response.media_id_string)
 
-            # Call post_tweet_with_media with the media file object
-            post_tweet_with_media(client, client_v1, msg, media_file)
+        if media_ids:
+            post_tweet_with_media(client, msg, media_ids)
         else:
             post_tweet(client, msg)
 

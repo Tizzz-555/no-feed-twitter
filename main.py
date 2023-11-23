@@ -28,15 +28,9 @@ def post_tweet(client, msg):
         # Handle the error appropriately
 
 
-def post_tweet_with_media(client, client_v1, msg, media_file):
+def post_tweet_with_media(client, msg, media_ids):
     try:
-        # Use the 'name' attribute for the filename
-        media_response = client_v1.media_upload(
-            filename=media_file.name, file=media_file
-        )
-        media_id = media_response.media_id_string
-
-        tweet_response = client.create_tweet(text=msg, media_ids=[media_id])
+        tweet_response = client.create_tweet(text=msg, media_ids=media_ids)
         return tweet_response
     except Exception as e:
         print(f"Failed to post tweet with media: {e}")
