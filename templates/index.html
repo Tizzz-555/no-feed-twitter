@@ -7,27 +7,34 @@
 </head>
 <body>
   <div class="tweet-container">
+    
     <div class="tweet-header">
-      <button class="close-tweet">X</button>
-      <div class="drafts-container">
+        <button class="close-tweet">X</button>
         <button class="drafts">Drafts</button>
-      </div>
     </div>
+
     <div class="tweet-body">
-      <div class="profile-container">
-        <img src="{{ url_for('static', filename='images/spennellata2.jpeg') }}" alt="Profile Picture" class="profile-pic">
+      <div class="content-container">
+          <div class="profile-container">
+              <img src="{{ url_for('static', filename='images/spennellata2.jpeg') }}" alt="Profile Picture" class="profile-pic">
+          </div>
+          <textarea id="tweetText" class="tweet-text" placeholder="What is happening?!"></textarea>
       </div>
-      <div class="tweet-input-container">
-        <textarea id="tweetText" placeholder="What's happening?"></textarea>
-        <div id="image-preview-container" class="image-preview-container">
+      <div id="image-preview-container" class="image-preview-container">
           <!-- Image previews will be inserted here -->
-        </div>
-        <div class="tweet-options">
+      </div>
+      <div class="reply-settings">
+        <button class="reply-permissions">
+          <img src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-globe.svg') }}" alt="Globe" class="globe-icon">
+          <span>Everyone can reply</span>
+        </button>
+      </div>
+      <div class="tweet-options">
           <button id="mediaButton">📎</button>
           <input type="file" id="mediaInput" multiple hidden>
           <button id="tweetButton">Post</button>
-        </div>
       </div>
+    </div>
     </div>
   </div>
 
