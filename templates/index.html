@@ -1,45 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>No Feed Twitter</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-  <div class="tweet-container">
-    
-    <div class="tweet-header">
-        <button class="close-tweet">X</button>
-        <button class="drafts">Drafts</button>
-    </div>
+	<head>
+		<meta charset="UTF-8" />
+		<title>No Feed Twitter</title>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='css/style.css') }}"
+		/>
+	</head>
+	<body>
+		<div class="tweet-container">
+			<div class="tweet-header">
+				<button class="close-tweet">
+					<img
+						src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-cross-2.svg') }}"
+						alt="Cross"
+						class="cross-icon"
+					/>
+				</button>
+				<button class="drafts">Drafts</button>
+			</div>
 
-    <div class="tweet-body">
-      <div class="content-container">
-          <div class="profile-container">
-              <img src="{{ url_for('static', filename='images/spennellata2.jpeg') }}" alt="Profile Picture" class="profile-pic">
-          </div>
-          <textarea id="tweetText" class="tweet-text" placeholder="What is happening?!"></textarea>
-      </div>
-      <div id="image-preview-container" class="image-preview-container">
-          <!-- Image previews will be inserted here -->
-      </div>
-      <div class="reply-settings">
-        <button class="reply-permissions">
-          <img src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-globe.svg') }}" alt="Globe" class="globe-icon">
-          <span>Everyone can reply</span>
-        </button>
-      </div>
-      <div class="tweet-options">
-          <button id="mediaButton">📎</button>
-          <input type="file" id="mediaInput" multiple hidden>
-          <button id="tweetButton">Post</button>
-      </div>
-    </div>
-    </div>
-  </div>
+			<div class="tweet-body">
+				<div class="content-container">
+					<div class="profile-container">
+						<img
+							src="{{ url_for('static', filename='images/spennellata2.jpeg') }}"
+							alt="Profile Picture"
+							class="profile-pic"
+						/>
+					</div>
+					<textarea
+						id="tweetText"
+						class="tweet-text"
+						placeholder="What is happening?!"
+					></textarea>
+				</div>
+				<div id="image-preview-container" class="image-preview-container">
+					<!-- Image previews will be inserted here -->
+				</div>
+				<div class="reply-settings">
+					<button class="reply-permissions">
+						<img
+							src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-globe.svg') }}"
+							alt="Globe"
+							class="globe-icon"
+						/>
+						<span>Everyone can reply</span>
+					</button>
+				</div>
 
-    <script
-    src="{{ url_for('static', filename='js/script.js') }}">
-  </script>
-</body>
+				<div class="tweet-footer">
+					<div class="icon-group">
+						<button id="mediaButton" class="extra-icons-btn">
+							<img
+								src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-image.svg') }}"
+								alt="Add Photo"
+								class="extra-icons"
+							/>
+						</button>
+						<button class="extra-icons-btn">
+							<img
+								src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-gif.svg') }}"
+								alt="Add Gif"
+								class="extra-icons"
+							/>
+						</button>
+						<button class="extra-icons-btn">
+							<img
+								src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-align.svg') }}"
+								alt="Add poll"
+								class="extra-icons"
+							/>
+						</button>
+						<button class="extra-icons-btn">
+							<img
+								src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-emoji.svg') }}"
+								alt="Add emoji"
+								class="extra-icons"
+							/>
+						</button>
+						<button class="extra-icons-btn">
+							<img
+								src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-schedule.svg') }}"
+								alt="Add Schedule"
+								class="extra-icons"
+							/>
+						</button>
+						<button class="extra-icons-btn">
+							<img
+								src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-location.svg') }}"
+								alt="Allow Geo Location"
+								class="extra-icons"
+							/>
+						</button>
+						<input type="file" id="mediaInput" multiple hidden />
+					</div>
+					<button id="tweetButton">Post</button>
+				</div>
+			</div>
+		</div>
+		<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+	</body>
 </html>
