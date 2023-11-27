@@ -96,7 +96,20 @@
 						</button>
 						<input type="file" id="mediaInput" multiple hidden />
 					</div>
-					<button id="tweetButton">Post</button>
+					<div class="post-group">
+						<div role="progressbar" class="progress-bar"></div>
+						<div class="vertical-line"></div>
+						<button class="add-icon-btn">
+							<img
+								src="{{ url_for('static',
+								filename='images/twitter-newui-iconkit/svg/twitter-plus.svg')
+								}}"
+								alt="Icon 2"
+								class="add-icon"
+							/>
+						</button>
+						<button id="tweetButton">Post</button>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -91,8 +91,8 @@ body {
 }
 
 .profile-pic {
-	width: 50px;
-	height: 50px;
+	width: 45px;
+	height: 45px;
 	border-radius: 50%;
 	object-fit: cover;
 }
@@ -209,10 +209,58 @@ body {
 	background-color: rgba(29, 161, 242, 0.1);
 }
 .extra-icons {
-	height: 18px; /* Adjust size as needed */
+	height: 18px;
 	width: auto;
 	filter: invert(48%) sepia(92%) saturate(476%) hue-rotate(162deg)
 		brightness(80%) contrast(101%);
+}
+
+.post-group {
+	display: flex;
+	align-items: center;
+	gap: 15px; /* Align to the left of tweetButton */
+}
+
+.progress-bar {
+	border: 2px solid #ced9e28f;
+	border-radius: 50%;
+	padding: 12px;
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: transparent;
+	transition: background-color 0.3s;
+}
+
+.add-icon-btn {
+	border: 1px solid #8b9cabb1;
+	border-radius: 50%;
+	padding: 6px;
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: transparent;
+	transition: background-color 0.3s;
+	cursor: pointer;
+}
+
+.add-icon-btn:hover {
+	background-color: rgba(29, 161, 242, 0.1); /* Hover effect */
+}
+
+.add-icon {
+	width: 14px;
+	height: auto;
+	filter: invert(48%) sepia(92%) saturate(476%) hue-rotate(162deg)
+		brightness(80%) contrast(101%);
+}
+
+.vertical-line {
+	height: 32px;
+	width: 1px;
+	background-color: #8b9cabb1;
 }
 #tweetButton {
 	background: #1da1f2;
