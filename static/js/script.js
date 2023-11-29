@@ -5,21 +5,32 @@ document.addEventListener("DOMContentLoaded", () => {
 	const tweetText = document.getElementById("tweet-text");
 	const mediaInput = document.getElementById("mediaInput");
 	const mediaButton = document.getElementById("mediaButton");
-	const tweetTextArea = document.getElementById("tweet-text");
 	const progressBar = document.getElementById("progress-bar");
-	const progressBarFill = document.getElementById("progress-bar-fill");
 	const charCountDisplay = document.getElementById("char-count");
+	const progressBarValue = document.querySelector(".progress-bar-value");
 
 	tweetButton.disabled = true;
 
-	// tweetTextArea.addEventListener("input", () => {
-	// 	const tweetLength = tweetTextArea.value.length;
-	// 	tweetButton.disabled = tweetLength === 0 || tweetLength > maxChars;
+	tweetText.addEventListener("input", () => {
+		const tweetLength = tweetText.value.length;
+		tweetButton.disabled = tweetLength === 0 || tweetLength > maxChars;
 
-	// 	// Optional: Update progress bar and character count
-	// 	// progressBarFill.style.width = `${(tweetLength / maxChars) * 100}%`;
-	// 	// charCountDisplay.textContent = `${tweetLength}/280`;
-	// });
+		const progress = tweetLength / maxChars;
+
+		const maxOffset = parseInt(
+			progressBarValue.getAttribute("stroke-dasharray"),
+			10
+		);
+
+		//TODO: Fix bug of tiny blue after deleting input
+
+		// TODO: Conditional rendering of the circles
+
+		// Update the stroke-dashoffset based on the progress
+		progressBarValue.style.strokeDashoffset = maxOffset * (1 - progress);
+
+		tweetButton.disabled = tweetLength === 0 || tweetLength > maxChars;
+	});
 
 	mediaInput.addEventListener("change", () => {
 		if (allMedia.length + mediaInput.files.length > 4) {

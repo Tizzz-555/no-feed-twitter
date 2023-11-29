@@ -165,7 +165,7 @@ body {
 	cursor: pointer;
 	padding: 8px 12px;
 	transition: background-color 0.3s;
-	color: #1da1f2;
+	color: #1d9bf0;
 	font-size: 14px;
 	font-weight: bold;
 	border-radius: 20px;
@@ -211,8 +211,8 @@ body {
 .extra-icons {
 	height: 18px;
 	width: auto;
-	filter: invert(48%) sepia(92%) saturate(476%) hue-rotate(162deg)
-		brightness(80%) contrast(101%);
+	filter: invert(48%) sepia(40%) saturate(2436%) hue-rotate(179deg)
+		brightness(98%) contrast(91%);
 }
 
 .post-group {
@@ -222,15 +222,15 @@ body {
 }
 
 .progress-bar {
-	border: 2px solid #ced9e28f;
-	border-radius: 50%;
-	padding: 12px;
-	margin-left: auto;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: transparent;
-	transition: background-color 0.3s;
+	display: inline-block;
+	vertical-align: middle;
+	transform: rotate(-90deg);
+	transform-origin: 50% 50%;
+}
+
+.progress-bar-value {
+	transition: stroke-dashoffset 0.3s;
+	stroke: #1da1f2; /* The color for the "filled" part of the circle */
 }
 
 .add-icon-btn {
@@ -253,8 +253,8 @@ body {
 .add-icon {
 	width: 14px;
 	height: auto;
-	filter: invert(48%) sepia(92%) saturate(476%) hue-rotate(162deg)
-		brightness(80%) contrast(101%);
+	filter: invert(48%) sepia(40%) saturate(2436%) hue-rotate(179deg)
+		brightness(98%) contrast(91%);
 }
 
 .vertical-line {
@@ -263,7 +263,7 @@ body {
 	background-color: #8b9cabb1;
 }
 #tweetButton {
-	background: #1da1f2;
+	background: #1d9bf0;
 	color: white;
 	border: none;
 	border-radius: 20px;
@@ -276,8 +276,17 @@ body {
 	justify-content: center;
 }
 
-#tweetButton:hover {
+#tweetButton:disabled {
 	opacity: 0.8;
+	cursor: default;
+}
+
+#tweetButton:not(:disabled) {
+	cursor: pointer;
+}
+
+#tweetButton:not(:disabled):hover {
+	background-color: #178ad2;
 }
 
 #mediaButton:disabled {

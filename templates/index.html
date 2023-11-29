@@ -31,7 +31,7 @@
 						/>
 					</div>
 					<textarea
-						id="tweetText"
+						id="tweet-text"
 						class="tweet-text"
 						placeholder="What is happening?!"
 					></textarea>
@@ -97,7 +97,32 @@
 						<input type="file" id="mediaInput" multiple hidden />
 					</div>
 					<div class="post-group">
-						<div role="progressbar" class="progress-bar"></div>
+						<svg
+							width="28"
+							height="28"
+							viewBox="0 0 28 28"
+							class="progress-bar"
+						>
+							<circle
+								cx="14"
+								cy="14"
+								r="12"
+								stroke="#e6ecf0"
+								stroke-width="2"
+								fill="none"
+							/>
+							<circle
+								cx="14"
+								cy="14"
+								r="12"
+								stroke="#1da1f2"
+								stroke-width="2"
+								fill="none"
+								class="progress-bar-value"
+								stroke-dasharray="75.3982"
+								stroke-dashoffset="75.3982"
+							/>
+						</svg>
 						<div class="vertical-line"></div>
 						<button class="add-icon-btn">
 							<img
