@@ -5,33 +5,59 @@ document.addEventListener("DOMContentLoaded", () => {
 	const tweetText = document.getElementById("tweet-text");
 	const mediaInput = document.getElementById("mediaInput");
 	const mediaButton = document.getElementById("mediaButton");
-	const progressBar = document.getElementById("progress-bar");
-	const charCountDisplay = document.getElementById("char-count");
+	const progressBar = document.querySelector(".progress-bar");
 	const progressBarValue = document.querySelector(".progress-bar-value");
+	const progressBarText = document.querySelector(".progress-bar-text");
 
 	tweetButton.disabled = true;
 
 	tweetText.addEventListener("input", () => {
 		const tweetLength = tweetText.value.length;
-		tweetButton.disabled = tweetLength === 0 || tweetLength > maxChars;
-
 		const progress = tweetLength / maxChars;
+		const remainingChars = maxChars - tweetLength;
 
-		const maxOffset = parseInt(
-			progressBarValue.getAttribute("stroke-dasharray"),
-			10
+		const maxOffset = parseFloat(
+			progressBarValue.getAttribute("stroke-dasharray")
 		);
 
-		//TODO: Fix bug of tiny blue after deleting input
-
-		// TODO: Conditional rendering of the circles
-
-		// Update the stroke-dashoffset based on the progress
 		progressBarValue.style.strokeDashoffset = maxOffset * (1 - progress);
+
+		if (remainingChars <= 20 && remainingChars > 0) {
+			progressBarValue.style.visibility = "visible";
+			progressBar.style.visibility = "visible";
+			progressBarValue.style.stroke = "#f1c40f";
+			progressBarText.textContent = remainingChars.toString();
+			progressBarText.setAttribute("display", "block");
+		} else if (remainingChars <= 0 && remainingChars > -10) {
+			progressBarValue.style.strokeDashoffset = 0;
+			progressBarValue.style.visibility = "visible";
+			progressBar.style.visibility = "visible";
+			progressBarValue.style.stroke = "red";
+			progressBarText.textContent = remainingChars.toString();
+			progressBarText.style.visibility = "visible";
+		} else if (remainingChars <= -10) {
+			progressBarValue.style.visibility = "hidden";
+			progressBar.style.visibility = "hidden";
+			progressBarText.textContent = remainingChars.toString();
+			progressBarText.style.visibility = "visible";
+		} else {
+			progressBarValue.style.visibility = "visible";
+			progressBar.style.visibility = "visible";
+			progressBarValue.style.stroke = "#1da1f2";
+			progressBarText.setAttribute("display", "none");
+		}
+
+		if (tweetLength === 0) {
+			// If there is no text, ensure the progress bar is completely reset
+			progressBarValue.style.strokeDashoffset = maxOffset;
+		}
+		// TODO: Conditional rendering of the circles
 
 		tweetButton.disabled = tweetLength === 0 || tweetLength > maxChars;
 	});
 
+	// TODO: Conditional rendering of the circles
+	// TODO: Not scrollbar, expand div
 	mediaInput.addEventListener("change", () => {
 		if (allMedia.length + mediaInput.files.length > 4) {
 			alert("Please upload up to 4 photos.");

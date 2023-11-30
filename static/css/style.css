@@ -218,7 +218,7 @@ body {
 .post-group {
 	display: flex;
 	align-items: center;
-	gap: 15px; /* Align to the left of tweetButton */
+	gap: 15px;
 }
 
 .progress-bar {
@@ -230,13 +230,18 @@ body {
 
 .progress-bar-value {
 	transition: stroke-dashoffset 0.3s;
-	stroke: #1da1f2; /* The color for the "filled" part of the circle */
+	stroke: #1da1f2;
+}
+
+.progress-bar-text {
+	font-size: 10px;
+	fill: #333;
 }
 
 .add-icon-btn {
 	border: 1px solid #8b9cabb1;
 	border-radius: 50%;
-	padding: 6px;
+	padding: 5px;
 	margin-left: auto;
 	display: flex;
 	align-items: center;
@@ -247,11 +252,11 @@ body {
 }
 
 .add-icon-btn:hover {
-	background-color: rgba(29, 161, 242, 0.1); /* Hover effect */
+	background-color: rgba(29, 161, 242, 0.1);
 }
 
 .add-icon {
-	width: 14px;
+	width: 13px;
 	height: auto;
 	filter: invert(48%) sepia(40%) saturate(2436%) hue-rotate(179deg)
 		brightness(98%) contrast(91%);
