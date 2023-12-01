@@ -107,6 +107,7 @@ body {
 	padding-left: 10px;
 	height: calc(100px - 20px);
 	outline: none;
+	overflow: hidden;
 }
 
 .image-preview-container {

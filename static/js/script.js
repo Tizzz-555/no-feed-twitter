@@ -8,10 +8,19 @@ document.addEventListener("DOMContentLoaded", () => {
 	const progressBar = document.querySelector(".progress-bar");
 	const progressBarValue = document.querySelector(".progress-bar-value");
 	const progressBarText = document.querySelector(".progress-bar-text");
+	const verticalLine = document.querySelector(".vertical-line");
+	const addIconBtn = document.querySelector(".add-icon-btn");
 
 	tweetButton.disabled = true;
 
+	function adjustTextAreaHeight() {
+		tweetText.style.height = "auto";
+		tweetText.style.height = tweetText.scrollHeight + "px";
+	}
+
+	adjustTextAreaHeight();
 	tweetText.addEventListener("input", () => {
+		adjustTextAreaHeight();
 		const tweetLength = tweetText.value.length;
 		const progress = tweetLength / maxChars;
 		const remainingChars = maxChars - tweetLength;
@@ -35,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			progressBarValue.style.stroke = "red";
 			progressBarText.textContent = remainingChars.toString();
 			progressBarText.style.visibility = "visible";
+			progressBarText.style.stroke = "red";
 		} else if (remainingChars <= -10) {
 			progressBarValue.style.visibility = "hidden";
 			progressBar.style.visibility = "hidden";
@@ -51,13 +61,11 @@ document.addEventListener("DOMContentLoaded", () => {
 			// If there is no text, ensure the progress bar is completely reset
 			progressBarValue.style.strokeDashoffset = maxOffset;
 		}
-		// TODO: Conditional rendering of the circles
 
 		tweetButton.disabled = tweetLength === 0 || tweetLength > maxChars;
 	});
 
 	// TODO: Conditional rendering of the circles
-	// TODO: Not scrollbar, expand div
 	mediaInput.addEventListener("change", () => {
 		if (allMedia.length + mediaInput.files.length > 4) {
 			alert("Please upload up to 4 photos.");
@@ -151,10 +159,10 @@ document.addEventListener("DOMContentLoaded", () => {
 		mediaInput.click();
 	});
 
-	function resetForm() {
-		tweetText.value = "";
-		mediaInput.value = "";
-		allMedia = [];
-		updateMediaList();
-	}
+	// function resetForm() {
+	// 	tweetText.value = "";
+	// 	mediaInput.value = "";
+	// 	allMedia = [];
+	// 	updateMediaList();
+	// }
 });
