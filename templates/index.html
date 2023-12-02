@@ -9,6 +9,15 @@
 		/>
 	</head>
 	<body>
+		<div>
+			<button id="mode-toggle" class="mode-toggle">
+				<img
+					src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-dark.svg') }}"
+					alt="Dark mode toggle"
+					class="mode-icon"
+				/>
+			</button>
+		</div>
 		<div class="tweet-container">
 			<div class="tweet-header">
 				<button class="close-tweet">
@@ -52,7 +61,7 @@
 
 				<div class="tweet-footer">
 					<div class="icon-group">
-						<button id="mediaButton" class="extra-icons-btn">
+						<button id="media-button" class="extra-icons-btn">
 							<img
 								src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-image.svg') }}"
 								alt="Add Photo"
@@ -94,7 +103,7 @@
 								class="extra-icons"
 							/>
 						</button>
-						<input type="file" id="mediaInput" multiple hidden />
+						<input type="file" id="media-input" multiple hidden />
 					</div>
 					<div class="post-group">
 						<svg
@@ -147,7 +156,7 @@
 								class="add-icon"
 							/>
 						</button>
-						<button id="tweetButton">Post</button>
+						<button id="tweet-button">Post</button>
 					</div>
 				</div>
 			</div>

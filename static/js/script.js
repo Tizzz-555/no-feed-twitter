@@ -1,15 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
 	let allMedia = [];
 	const maxChars = 280;
-	const tweetButton = document.getElementById("tweetButton");
+	const tweetButton = document.getElementById("tweet-button");
 	const tweetText = document.getElementById("tweet-text");
-	const mediaInput = document.getElementById("mediaInput");
-	const mediaButton = document.getElementById("mediaButton");
+	const mediaInput = document.getElementById("media-input");
+	const mediaButton = document.getElementById("media-button");
+	const modeToggle = document.getElementById("mode-toggle");
 	const progressBar = document.querySelector(".progress-bar");
 	const progressBarValue = document.querySelector(".progress-bar-value");
 	const progressBarText = document.querySelector(".progress-bar-text");
 	const verticalLine = document.querySelector(".vertical-line");
 	const addIconBtn = document.querySelector(".add-icon-btn");
+	const body = document.body;
+	const tweetContainer = document.querySelector(".tweet-container");
+
+	modeToggle.addEventListener("click", () => {
+		body.classList.toggle("dark-mode");
+		tweetContainer.classList.toggle("dark-mode");
+		tweetText.classList.toggle("dark-mode");
+	});
+
+	progressBar.style.display = "none";
+	verticalLine.style.display = "none";
+	addIconBtn.style.display = "none";
 
 	tweetButton.disabled = true;
 
@@ -18,13 +31,21 @@ document.addEventListener("DOMContentLoaded", () => {
 		tweetText.style.height = tweetText.scrollHeight + "px";
 	}
 
+	function toggleElementsVisibility(visible) {
+		const displayStyle = visible ? "block" : "none";
+		progressBar.style.display = displayStyle;
+		verticalLine.style.display = displayStyle;
+		addIconBtn.style.display = displayStyle;
+	}
 	adjustTextAreaHeight();
+
 	tweetText.addEventListener("input", () => {
 		adjustTextAreaHeight();
 		const tweetLength = tweetText.value.length;
 		const progress = tweetLength / maxChars;
 		const remainingChars = maxChars - tweetLength;
 
+		toggleElementsVisibility(tweetLength > 0);
 		const maxOffset = parseFloat(
 			progressBarValue.getAttribute("stroke-dasharray")
 		);
@@ -65,7 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		tweetButton.disabled = tweetLength === 0 || tweetLength > maxChars;
 	});
 
-	// TODO: Conditional rendering of the circles
 	mediaInput.addEventListener("change", () => {
 		if (allMedia.length + mediaInput.files.length > 4) {
 			alert("Please upload up to 4 photos.");
@@ -155,14 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 	});
 
-	document.getElementById("mediaButton").addEventListener("click", () => {
+	mediaButton.addEventListener("click", () => {
 		mediaInput.click();
 	});
-
-	// function resetForm() {
-	// 	tweetText.value = "";
-	// 	mediaInput.value = "";
-	// 	allMedia = [];
-	// 	updateMediaList();
-	// }
 });

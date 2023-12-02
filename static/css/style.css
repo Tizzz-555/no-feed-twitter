@@ -2,6 +2,7 @@ body {
 	font-family: Arial, sans-serif;
 	background: #e6ecf0;
 	padding: 20px;
+	transition: background-color 0.3s ease;
 }
 
 .tweet-container {
@@ -13,12 +14,53 @@ body {
 	padding: 10px;
 	width: 580px;
 	margin: auto;
+	margin-top: 50px;
 	padding-top: 40px;
 	padding-left: 16px;
 	padding-right: 16px;
 	position: relative;
+	transition: background-color 0.3s ease;
 }
 
+.mode-toggle {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: transparent;
+	width: 30px;
+	height: 30px;
+	top: 20px;
+	right: 350px;
+	padding: 20px 20px;
+	border: 0px solid transparent;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.mode-icon {
+	width: 30px;
+	height: auto;
+}
+
+.mode-toggle:hover {
+	background-color: rgba(151, 165, 173, 0.3);
+}
+body.dark-mode {
+	background: #303030;
+}
+
+.tweet-container.dark-mode {
+	background: black;
+}
+
+.tweet-text.dark-mode {
+	background: black;
+	color: white;
+	caret-color: white;
+	transition: background-color 0.3s ease;
+}
 /* Header */
 .tweet-header {
 	position: absolute;
@@ -108,6 +150,7 @@ body {
 	height: calc(100px - 20px);
 	outline: none;
 	overflow: hidden;
+	transition: background-color 0.3s ease;
 }
 
 .image-preview-container {
@@ -250,6 +293,8 @@ body {
 	background: transparent;
 	transition: background-color 0.3s;
 	cursor: pointer;
+	width: 26px;
+	height: 26px;
 }
 
 .add-icon-btn:hover {
@@ -268,7 +313,7 @@ body {
 	width: 1px;
 	background-color: #8b9cabb1;
 }
-#tweetButton {
+#tweet-button {
 	background: #1d9bf0;
 	color: white;
 	border: none;
@@ -282,19 +327,19 @@ body {
 	justify-content: center;
 }
 
-#tweetButton:disabled {
+#tweet-button:disabled {
 	opacity: 0.8;
 	cursor: default;
 }
 
-#tweetButton:not(:disabled) {
+#tweet-button:not(:disabled) {
 	cursor: pointer;
 }
 
-#tweetButton:not(:disabled):hover {
+#tweet-button:not(:disabled):hover {
 	background-color: #178ad2;
 }
 
-#mediaButton:disabled {
+#media-button:disabled {
 	cursor: default;
 }
