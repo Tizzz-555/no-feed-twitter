@@ -5,6 +5,9 @@ body {
 	transition: background-color 0.3s ease;
 }
 
+.container-wrapper {
+	position: relative;
+}
 .tweet-container {
 	display: flex;
 	flex-direction: column;
@@ -31,7 +34,7 @@ body {
 	width: 30px;
 	height: 30px;
 	top: 20px;
-	right: 350px;
+	right: 20px;
 	padding: 20px 20px;
 	border: 0px solid transparent;
 	border-radius: 50%;
@@ -235,6 +238,29 @@ body.dark-mode {
 	gap: 3px;
 }
 
+.img-icons-btn {
+	border: none;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	padding: 20px 20px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background-color 0.3s, border-color 0.3s;
+	background: transparent;
+}
+
+.img-icons-btn:hover {
+	background-color: rgba(29, 161, 242, 0.1);
+}
+
+.img-icons-btn.disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
 .extra-icons-btn {
 	border: none;
 	border-radius: 50%;
@@ -338,8 +364,4 @@ body.dark-mode {
 
 #tweet-button:not(:disabled):hover {
 	background-color: #178ad2;
-}
-
-#media-button:disabled {
-	cursor: default;
 }

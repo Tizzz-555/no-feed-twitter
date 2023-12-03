@@ -18,145 +18,147 @@
 				/>
 			</button>
 		</div>
-		<div class="tweet-container">
-			<div class="tweet-header">
-				<button class="close-tweet">
-					<img
-						src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-cross-2.svg') }}"
-						alt="Cross"
-						class="cross-icon"
-					/>
-				</button>
-				<button class="drafts">Drafts</button>
-			</div>
-
-			<div class="tweet-body">
-				<div class="content-container">
-					<div class="profile-container">
+		<div class="container-wrapper">
+			<div class="tweet-container">
+				<div class="tweet-header">
+					<button class="close-tweet">
 						<img
-							src="{{ url_for('static', filename='images/spennellata2.jpeg') }}"
-							alt="Profile Picture"
-							class="profile-pic"
+							src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-cross-2.svg') }}"
+							alt="Cross"
+							class="cross-icon"
 						/>
-					</div>
-					<textarea
-						id="tweet-text"
-						class="tweet-text"
-						placeholder="What is happening?!"
-					></textarea>
-				</div>
-				<div id="image-preview-container" class="image-preview-container">
-					<!-- Image previews will be inserted here -->
-				</div>
-				<div class="reply-settings">
-					<button class="reply-permissions">
-						<img
-							src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-globe.svg') }}"
-							alt="Globe"
-							class="globe-icon"
-						/>
-						<span>Everyone can reply</span>
 					</button>
+					<button class="drafts">Drafts</button>
 				</div>
 
-				<div class="tweet-footer">
-					<div class="icon-group">
-						<button id="media-button" class="extra-icons-btn">
+				<div class="tweet-body">
+					<div class="content-container">
+						<div class="profile-container">
 							<img
-								src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-image.svg') }}"
-								alt="Add Photo"
-								class="extra-icons"
+								src="{{ url_for('static', filename='images/spennellata2.jpeg') }}"
+								alt="Profile Picture"
+								class="profile-pic"
 							/>
-						</button>
-						<button class="extra-icons-btn">
-							<img
-								src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-gif.svg') }}"
-								alt="Add Gif"
-								class="extra-icons"
-							/>
-						</button>
-						<button class="extra-icons-btn">
-							<img
-								src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-align.svg') }}"
-								alt="Add poll"
-								class="extra-icons"
-							/>
-						</button>
-						<button class="extra-icons-btn">
-							<img
-								src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-emoji.svg') }}"
-								alt="Add emoji"
-								class="extra-icons"
-							/>
-						</button>
-						<button class="extra-icons-btn">
-							<img
-								src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-schedule.svg') }}"
-								alt="Add Schedule"
-								class="extra-icons"
-							/>
-						</button>
-						<button class="extra-icons-btn">
-							<img
-								src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-location.svg') }}"
-								alt="Allow Geo Location"
-								class="extra-icons"
-							/>
-						</button>
-						<input type="file" id="media-input" multiple hidden />
+						</div>
+						<textarea
+							id="tweet-text"
+							class="tweet-text"
+							placeholder="What is happening?!"
+						></textarea>
 					</div>
-					<div class="post-group">
-						<svg
-							width="28"
-							height="28"
-							viewBox="0 0 28 28"
-							class="progress-bar"
-						>
-							<circle
-								cx="14"
-								cy="14"
-								r="12"
-								stroke="#e6ecf0"
-								stroke-width="2"
-								fill="none"
-							></circle>
-							<circle
-								cx="14"
-								cy="14"
-								r="12"
-								stroke="#1da1f2"
-								stroke-width="2"
-								fill="none"
-								class="progress-bar-value"
-								stroke-dasharray="75.3982"
-								stroke-dashoffset="75.3982"
-							></circle>
-							<!-- Counter text -->
-							<text
-								transform="rotate(90 14 14)"
-								x="50%"
-								y="50%"
-								class="progress-bar-text"
-								text-anchor="middle"
-								stroke="#333"
-								stroke-width="1px"
-								dy=".3em"
-								display="none"
-							>
-								280
-							</text>
-						</svg>
-						<div class="vertical-line"></div>
-						<button class="add-icon-btn">
+					<div id="image-preview-container" class="image-preview-container">
+						<!-- Image previews will be inserted here -->
+					</div>
+					<div class="reply-settings">
+						<button class="reply-permissions">
 							<img
-								src="{{ url_for('static',
-									filename='images/twitter-newui-iconkit/svg/twitter-plus.svg')
-									}}"
-								alt="Icon 2"
-								class="add-icon"
+								src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-globe.svg') }}"
+								alt="Globe"
+								class="globe-icon"
 							/>
+							<span>Everyone can reply</span>
 						</button>
-						<button id="tweet-button">Post</button>
+					</div>
+
+					<div class="tweet-footer">
+						<div class="icon-group">
+							<button id="media-button" class="img-icons-btn">
+								<img
+									src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-image.svg') }}"
+									alt="Add Photo"
+									class="extra-icons"
+								/>
+							</button>
+							<button class="img-icons-btn">
+								<img
+									src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-gif.svg') }}"
+									alt="Add Gif"
+									class="extra-icons"
+								/>
+							</button>
+							<button class="extra-icons-btn">
+								<img
+									src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-align.svg') }}"
+									alt="Add poll"
+									class="extra-icons"
+								/>
+							</button>
+							<button class="extra-icons-btn">
+								<img
+									src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-emoji.svg') }}"
+									alt="Add emoji"
+									class="extra-icons"
+								/>
+							</button>
+							<button class="extra-icons-btn">
+								<img
+									src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-schedule.svg') }}"
+									alt="Add Schedule"
+									class="extra-icons"
+								/>
+							</button>
+							<button class="extra-icons-btn">
+								<img
+									src="{{ url_for('static', filename='images/twitter-newui-iconkit/svg/twitter-location.svg') }}"
+									alt="Allow Geo Location"
+									class="extra-icons"
+								/>
+							</button>
+							<input type="file" id="media-input" multiple hidden />
+						</div>
+						<div class="post-group">
+							<svg
+								width="28"
+								height="28"
+								viewBox="0 0 28 28"
+								class="progress-bar"
+							>
+								<circle
+									cx="14"
+									cy="14"
+									r="12"
+									stroke="#e6ecf0"
+									stroke-width="2"
+									fill="none"
+								></circle>
+								<circle
+									cx="14"
+									cy="14"
+									r="12"
+									stroke="#1da1f2"
+									stroke-width="2"
+									fill="none"
+									class="progress-bar-value"
+									stroke-dasharray="75.3982"
+									stroke-dashoffset="75.3982"
+								></circle>
+								<!-- Counter text -->
+								<text
+									transform="rotate(90 14 14)"
+									x="50%"
+									y="50%"
+									class="progress-bar-text"
+									text-anchor="middle"
+									stroke="#333"
+									stroke-width="1px"
+									dy=".3em"
+									display="none"
+								>
+									280
+								</text>
+							</svg>
+							<div class="vertical-line"></div>
+							<button class="add-icon-btn">
+								<img
+									src="{{ url_for('static',
+										filename='images/twitter-newui-iconkit/svg/twitter-plus.svg')
+										}}"
+									alt="Icon 2"
+									class="add-icon"
+								/>
+							</button>
+							<button id="tweet-button">Post</button>
+						</div>
 					</div>
 				</div>
 			</div>

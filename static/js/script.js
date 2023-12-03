@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const tweetText = document.getElementById("tweet-text");
 	const mediaInput = document.getElementById("media-input");
 	const mediaButton = document.getElementById("media-button");
+	const mediaButtons = document.querySelectorAll(".img-icons-btn");
 	const modeToggle = document.getElementById("mode-toggle");
 	const progressBar = document.querySelector(".progress-bar");
 	const progressBarValue = document.querySelector(".progress-bar-value");
@@ -96,7 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
 				allMedia.push(file);
 			}
 			updateMediaList();
-			mediaButton.disabled = allMedia.length >= 4;
+			mediaButtons.disabled = allMedia.length >= 4;
+			console.log(mediaButtons.disabled);
 		}
 	});
 
@@ -121,13 +123,30 @@ document.addEventListener("DOMContentLoaded", () => {
 					URL.revokeObjectURL(img.src);
 					allMedia.splice(index, 1);
 					updateMediaList();
-					mediaButton.disabled = allMedia.length >= 4;
+					mediaButtons.disabled = allMedia.length >= 4;
 				};
 
 				preview.appendChild(deleteIcon);
 				container.appendChild(preview);
 			};
 			reader.readAsDataURL(file);
+		});
+
+		const disableButtons = allMedia.length >= 4;
+		mediaButtons.forEach((button) => {
+			button.disabled = disableButtons;
+		});
+
+		mediaButtons.forEach((button) => {
+			if (disableButtons) {
+				button.classList.add("disabled");
+				button.style.cursor = "default";
+				button.style.pointerEvents = "none";
+			} else {
+				button.classList.remove("disabled");
+				button.style.cursor = "pointer";
+				button.style.pointerEvents = "auto";
+			}
 		});
 	}
 	tweetButton.addEventListener("click", () => {
