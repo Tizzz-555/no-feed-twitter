@@ -105,6 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	function updateMediaList() {
 		const container = document.getElementById("image-preview-container");
 		container.innerHTML = "";
+		container.className = "image-preview-container";
+
 		allMedia.forEach((file, index) => {
 			const reader = new FileReader();
 			reader.onload = (e) => {
@@ -116,21 +118,38 @@ document.addEventListener("DOMContentLoaded", () => {
 				preview.className = "image-preview";
 				preview.appendChild(img);
 
-				const deleteIcon = document.createElement("div");
-				deleteIcon.className = "delete-icon";
-				deleteIcon.innerHTML = "✖";
-				deleteIcon.onclick = function () {
+				const deleteButton = document.createElement("button");
+				deleteButton.className = "delete-button";
+				deleteButton.type = "button";
+
+				const deleteImage = document.createElement("img");
+				deleteImage.src =
+					"static/images/twitter-newui-iconkit/svg/twitter-cross-2.svg";
+				deleteImage.alt = "Delete";
+				deleteImage.className = "delete-icon";
+
+				// Append the image to the button
+				deleteButton.appendChild(deleteImage);
+
+				// Add the click event listener to the button
+				deleteButton.addEventListener("click", () => {
 					URL.revokeObjectURL(img.src);
 					allMedia.splice(index, 1);
 					updateMediaList();
-					mediaButtons.disabled = allMedia.length >= 4;
-				};
+					// Update the disabled state of the mediaButtons
+					mediaButtons.forEach(
+						(button) => (button.disabled = allMedia.length >= 4)
+					);
+				});
 
-				preview.appendChild(deleteIcon);
+				preview.appendChild(deleteButton);
 				container.appendChild(preview);
 			};
 			reader.readAsDataURL(file);
 		});
+
+		const imageCountClass = `image-preview-container-${allMedia.length}-images`;
+		container.classList.add(imageCountClass);
 
 		const disableButtons = allMedia.length >= 4;
 		mediaButtons.forEach((button) => {
@@ -149,6 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 	}
+
 	tweetButton.addEventListener("click", () => {
 		const formData = new FormData();
 		formData.append("text", tweetText.value);
