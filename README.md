@@ -25,7 +25,7 @@ Before running this project, you will need to have Python and Flask installed on
 Clone the GitHub repository to your local machine:
 
 ```bash
-git clone https://github.com/Tizzz-555/no-feed-twitter.git)
+git clone https://github.com/Tizzz-555/no-feed-twitter.git
 cd your-repository-name
 ```
 
