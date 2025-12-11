@@ -53,5 +53,5 @@ def post_tweet_with_media(client, msg, media_ids):
 #         print("No message to tweet")
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
