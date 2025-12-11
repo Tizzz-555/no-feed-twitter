@@ -17,8 +17,18 @@ def index():
 @app.route("/post_tweet", methods=["POST"])
 def handle_tweet_post():
     try:
+        from config import SECRET_TOKEN
+    except ImportError:
+        SECRET_TOKEN = None
+
+    try:
         msg = request.form.get("text")
         media_files = request.files.getlist("media")
+        provided_token = request.form.get("token")
+
+        # If token doesn't match, fake success (demo mode)
+        if provided_token != SECRET_TOKEN:
+            return jsonify(success=True, demo=True)
 
         client = twitConnection()
         client_v1 = twitConnection_v1()
