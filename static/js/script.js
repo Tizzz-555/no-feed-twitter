@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const progressBarText = document.querySelector(".progress-bar-text");
   const verticalLine = document.querySelector(".vertical-line");
   const addIconBtn = document.querySelector(".add-icon-btn");
+  const closeButton = document.querySelector(".close-tweet");
   const body = document.body;
   const tweetContainer = document.querySelector(".tweet-container");
 
@@ -19,6 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
     body.classList.toggle("dark-mode");
     tweetContainer.classList.toggle("dark-mode");
     tweetText.classList.toggle("dark-mode");
+  });
+
+  // Clear button: reset textarea and remove attachments
+  closeButton.addEventListener("click", () => {
+    // Clear textarea and trigger input event to reset UI
+    tweetText.value = "";
+    tweetText.dispatchEvent(new Event("input"));
+
+    // Clear media
+    allMedia = [];
+    mediaInput.value = "";
+    updateMediaList();
   });
 
   progressBar.style.display = "none";
